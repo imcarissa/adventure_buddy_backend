@@ -2,7 +2,7 @@ class Api::V1::AdventuresController < ApplicationController
 
     def index
         adventures = Adventure.all
-        #render json: adventures
+ 
         render json: AdventureSerializer.new(adventures)
     end
 

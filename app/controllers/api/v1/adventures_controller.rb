@@ -15,6 +15,11 @@ class Api::V1::AdventuresController < ApplicationController
         end
     end
 
+    def destroy
+        adventure = Adventure.find_by(adventure_params)
+        adventure.destroy
+      end
+
     private
 
     def adventure_params

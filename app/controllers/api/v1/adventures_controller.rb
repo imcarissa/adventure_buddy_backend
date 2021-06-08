@@ -15,10 +15,16 @@ class Api::V1::AdventuresController < ApplicationController
         end
     end
 
+    def show
+        adventure = Adventure.find_by_id(params[:id])
+        render json: AdventureSerializer.new(adventure)
+    end
+
     def destroy
-        adventure = Adventure.find_by(adventure_params)
+        adventure = Adventure.find_by_id(params[:id])
         adventure.destroy
-      end
+        render json: {message: "#{adventure.name} was successfully deleted"}
+    end
 
     private
 

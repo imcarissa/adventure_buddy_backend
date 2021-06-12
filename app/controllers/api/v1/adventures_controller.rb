@@ -2,7 +2,6 @@ class Api::V1::AdventuresController < ApplicationController
 
     def index
         adventures = Adventure.all
- 
         render json: AdventureSerializer.new(adventures)
     end
 
@@ -17,13 +16,16 @@ class Api::V1::AdventuresController < ApplicationController
 
     def show
         adventure = Adventure.find_by_id(params[:id])
-        render json: AdventureSerializer.new(adventure)
+        if adventure
+            render json: AdventureSerializer.new(adventure)
+        else
+            render { message: "Adventure not found"}
     end
 
     def destroy
         adventure = Adventure.find_by_id(params[:id])
         adventure.destroy
-        render json: {message: "#{adventure.name} was successfully deleted"}
+        render json: {message: "#{adventure.title} was successfully deleted"}
     end
 
     private

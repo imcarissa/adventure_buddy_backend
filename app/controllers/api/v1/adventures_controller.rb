@@ -14,14 +14,6 @@ class Api::V1::AdventuresController < ApplicationController
         end
     end
 
-    def show
-        adventure = Adventure.find_by_id(params[:id])
-        if adventure
-            render json: AdventureSerializer.new(adventure)
-        else
-            render { message: "Adventure not found"}
-    end
-
     def destroy
         adventure = Adventure.find_by_id(params[:id])
         adventure.destroy
